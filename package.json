@@ -1,0 +1,15 @@
+{
+  "name": "relay-chat",
+  "version": "0.1.0",
+  "description": "Relay server pro end-to-end šifrovaný chat. Server pouze přeposílá šifrovaná data.",
+  "main": "server.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test"
+  },
+  "engines": { "node": ">=18" },
+  "dependencies": {
+    "ws": "^8.18.0"
+  }
+}

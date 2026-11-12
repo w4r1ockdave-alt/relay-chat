@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <title>Relay Chat – šifrovaný chat</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main id="lobby" class="card" hidden>
+    <h1>Relay Chat</h1>
+    <p class="lead" id="lobby-lead"></p>
+    <form id="lobby-form">
+      <label for="nick">Přezdívka</label>
+      <input id="nick" maxlength="32" autocomplete="nickname" placeholder="např. Anička" required>
+      <button type="submit" id="lobby-submit"></button>
+    </form>
+    <p class="note">
+      Zprávy se šifrují ve vašem prohlížeči (AES‑256‑GCM). Klíč je součástí odkazu za znakem
+      <code>#</code> a na server se nikdy neodesílá. Server zprávy jen přeposílá a nic neukládá.
+    </p>
+  </main>
+
+  <main id="chat" hidden>
+    <header>
+      <div>
+        <strong>Relay Chat</strong>
+        <span id="status" class="status">Připojování…</span>
+      </div>
+      <div class="actions">
+        <button id="copy" type="button">Kopírovat pozvánku</button>
+        <button id="leave" type="button" class="ghost">Odejít</button>
+      </div>
+    </header>
+    <ul id="log" aria-live="polite"></ul>
+    <form id="send-form">
+      <input id="text" maxlength="4000" autocomplete="off" placeholder="Napište zprávu…" aria-label="Zpráva">
+      <button type="submit">Odeslat</button>
+    </form>
+  </main>
+
+  <script src="crypto.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
