@@ -1,0 +1,57 @@
+{
+  "name": "relay-melody-vst",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "node server/index.js",
+    "client": "npm --prefix client run dev -- --host 0.0.0.0 --port 5173",
+    "build": "npm --prefix client run build",
+    "start": "NODE_ENV=production node server/index.js",
+    "seed": "node server/seed.js",
+    "desktop": "npm run build && electron .",
+    "dist:win": "npm run build && electron-builder --win nsis --x64"
+  },
+  "dependencies": {
+    "@tonejs/midi": "^2.0.28",
+    "bcryptjs": "^2.4.3",
+    "concurrently": "^9.0.1",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.1"
+  },
+  "devDependencies": {
+    "electron": "^35.7.5",
+    "electron-builder": "^26.18.0"
+  },
+  "main": "desktop/main.js",
+  "build": {
+    "appId": "studio.relay.melody",
+    "productName": "Relay",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "desktop/**/*",
+      "server/**/*.js",
+      "client/dist/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  }
+}
